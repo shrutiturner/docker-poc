@@ -1,0 +1,15 @@
+# redeploy to docker when main branch changes
+trigger:
+- main
+
+# use the linux agent to build the container
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: build
+  jobs:
+    - job: build
+      steps:
+      - script: docker build
+        displayName: 'docker build'
